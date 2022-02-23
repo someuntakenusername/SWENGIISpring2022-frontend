@@ -6,7 +6,8 @@ class YelpComponent extends React.Component {
         super(props)
     
         this.state = {
-            namesOfLocations: []
+            namesOfLocations: [],
+            textValue: ""
         }
     }
 
@@ -20,11 +21,15 @@ class YelpComponent extends React.Component {
         console.log(this.state.namesOfLocations)
     }
 
+    
+
     render (){
         return(
             <div>
+                
+
                 <h1 className="text-center">
-                    Restaurants In Waco 
+                    Restaurants Near Search (Default Waco)
                 </h1>
                 <ul>
                     {this.state.namesOfLocations}

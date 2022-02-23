@@ -10,7 +10,7 @@ const apiKey = "h5ZnJC2Z6QNEZt6iLSxW83zkQr6Obcb6WuP-rlxKw-8xU3mInevlmRnlBrs3M95W
 const corsAnywhere = "https://cors-anywhere.herokuapp.com/";
 
 export default async function searchYelp() {
-    const url = `https://api.yelp.com/v3/businesses/search?term=food&location=Waco&sort_by=best_match`;
+    const url = `https://api.yelp.com/v3/businesses/search?term=Restaurants&location=Waco&sort_by=best_match`;
     const data = await fetch(`${corsAnywhere}${url}`, {
         headers: {
           Authorization: `Bearer ${apiKey}`,
@@ -34,7 +34,6 @@ export default async function searchYelp() {
         reviewCount: business.review_count
       }
     })
-    console.log(businesses)
 
     return businesses
   } else {

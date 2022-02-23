@@ -9,6 +9,7 @@ import {
   Link
 } from "react-router-dom";
 import YelpComponent from './components/YelpDemoComponent';
+import GooglePlacesDemo from './components/GooglePlacesDemoComponent';
 
 function App() {
 
@@ -24,6 +25,9 @@ function App() {
             </li>
             <li>
               <Link to="/yelp">Yelp API</Link>
+            </li>
+            <li>
+              <Link to="/places">Google Places API</Link>
             </li>
             
           </ul>
@@ -43,6 +47,10 @@ function App() {
           </Route>
           <Route path="/yelp" element ={
             <YelpComponent></YelpComponent>
+          }>
+          </Route>
+          <Route path="/places" element ={
+            <GooglePlacesDemo></GooglePlacesDemo>
           }>
           </Route>
         </Routes>
