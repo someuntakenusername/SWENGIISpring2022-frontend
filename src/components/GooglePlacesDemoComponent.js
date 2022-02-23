@@ -15,7 +15,7 @@ export default class GooglePlacesDemo extends Component {
     var x = await searchPlaces();
         for (let index = 0; index < x.length; index++) {
             this.setState({
-                nameOfPlaces:[...this.state.nameOfPlaces, <li key={x[index].name}>{x[index].description}</li>]
+                nameOfPlaces:[...this.state.nameOfPlaces, <li key={x[index].description}>{x[index].description}</li>]
             })
         }
         console.log(this.state.nameOfPlaces)
