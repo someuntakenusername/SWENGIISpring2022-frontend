@@ -1,18 +1,15 @@
-import React from 'react';
-import  {MapComponent}  from './components/MapComponent';
-import './App.css';
-import useWindowDimensions from "./FunctionReferences/WindowDimensions"
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link
-} from "react-router-dom";
-import YelpComponent from './components/YelpDemoComponent';
-import GooglePlacesDemo from './components/GooglePlacesDemoComponent';
+import React from "react";
+import { MapComponent } from "./components/MapComponent";
+import "./App.css";
+import useWindowDimensions from "./FunctionReferences/WindowDimensions";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import YelpComponent from "./components/YelpDemoComponent";
+import GooglePlacesDemo from "./components/GooglePlacesDemoComponent";
+import SignUp from "./components/SignUp";
+import { Container } from "react-bootstrap";
+import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
-
   const { height, width } = useWindowDimensions();
 
   return (
@@ -20,39 +17,31 @@ function App() {
       <div>
         <nav>
           <ul>
+            {
+            /*
             <li>
-              <Link to="/home">Google Maps API</Link>
+              <Link to="/SignUp">Sign Up</Link>
             </li>
-            <li>
-              <Link to="/yelp">Yelp API</Link>
-            </li>
-            <li>
-              <Link to="/places">Google Places API</Link>
-            </li>
-            
+            */
+            }
           </ul>
         </nav>
         <Routes>
-          <Route path="/home" element ={
-            <div className="App">
-              <MapComponent
-              googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJYrN6ByIeKbZxymQ7LaESn-lHUhMZEXE&v=3.exp&libraries=geometry,drawing,places"
-              loadingElement={<div style={{ height: `100%` }} />}
-              containerElement={<div style={{ height: height }} />}
-              mapElement={<div style={{ height: width }} />}
-              >
-              </MapComponent>
-            </div>
-          }>
-          </Route>
-          <Route path="/yelp" element ={
-            <YelpComponent></YelpComponent>
-          }>
-          </Route>
-          <Route path="/places" element ={
-            <GooglePlacesDemo></GooglePlacesDemo>
-          }>
-          </Route>
+          <Route
+            path="/SignUp"
+            element={
+              <AuthProvider>
+                <Container
+                  className="d-flex align-items-center justify-content-center"
+                  style={{minHeight: "100vh"}}
+                >
+                  <div className="w-100" style={{maxWidth: "400px"}}>
+                    <SignUp></SignUp>
+                  </div>
+                </Container>
+              </AuthProvider>
+            }
+          ></Route>
         </Routes>
       </div>
     </Router>
