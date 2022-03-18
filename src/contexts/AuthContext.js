@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import axios from 'axios';
+const bcrypt = require('bcryptjs')
 const AuthContext = React.createContext();
 
 export function useAuth() {
@@ -14,7 +15,7 @@ export function AuthProvider({ children }) {
       nameFirst: nameFirst,
       nameLast: nameLast,
       email: email,
-      password: password
+      password: bcrypt.hashSync(password, bcrypt.genSaltSync())
     };
 
     axios.post("http://localhost:80/user/createuser", userDTO).then((res) => {
@@ -25,11 +26,22 @@ export function AuthProvider({ children }) {
         email: email,
       });
     });
+    return currentUser;
+  }
+
+  function signin(email, nameFirst, nameLast) {
+    setCurrentUser({
+      nameFirst: nameFirst,
+      nameLast: nameLast,
+      email: email,
+    });
+
   }
 
   const value = {
     currentUser,
     signup,
+    signin
   };
   console.log(value)
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

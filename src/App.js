@@ -8,6 +8,7 @@ import GooglePlacesDemo from "./components/GooglePlacesDemoComponent";
 import SignUp from "./components/SignUp";
 import { Container } from "react-bootstrap";
 import { AuthProvider } from "./contexts/AuthContext";
+import SignIn from "./components/SignIn";
 
 function App() {
   const { height, width } = useWindowDimensions();
@@ -37,6 +38,21 @@ function App() {
                 >
                   <div className="w-100" style={{maxWidth: "400px"}}>
                     <SignUp></SignUp>
+                  </div>
+                </Container>
+              </AuthProvider>
+            }
+          ></Route>
+           <Route
+            path="/SignIn"
+            element={
+              <AuthProvider>
+                <Container
+                  className="d-flex align-items-center justify-content-center"
+                  style={{minHeight: "100vh"}}
+                >
+                  <div className="w-100" style={{maxWidth: "400px"}}>
+                    <SignIn></SignIn>
                   </div>
                 </Container>
               </AuthProvider>

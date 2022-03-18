@@ -24,8 +24,7 @@ export default function SignUp() {
     var users = (await getUsers()).data;
     for (let index = 0; index < users.length; index++) {
       if (
-        users[index].email.toLowerCase() ===
-        emailRef.current.value.toLowerCase()
+        users[index].email.toLowerCase() === emailRef.current.value.toLowerCase()
       ) {
         return setError("Account Exists. Please Sign In");
       }
