@@ -3,6 +3,7 @@ import { Card, Form, Button, Alert } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useAuth } from "../contexts/AuthContext";
 import { getUsers } from "../services/UserService";
+import { Link } from "react-router-dom";
 
 export default function SignUp() {
   const emailRef = useRef();
@@ -38,6 +39,7 @@ export default function SignUp() {
         nameLastRef.current.value,
         passwordRef.current.value
       );
+      
     } catch {
       e.preventDefault();
       setError("Failed To Create An Account");
@@ -98,7 +100,7 @@ export default function SignUp() {
           </Form>
         </Card.Body>
       </Card>
-      <div className="w-100 text-center mt-2">Already Registered? Log In.</div>
+      <div className="w-100 text-center mt-2"><Link className="w-100 text-center mt-2" to="/SignIn"> Have an account? Click Here. </Link></div> 
     </>
   );
 }

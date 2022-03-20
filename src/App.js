@@ -7,23 +7,25 @@ import YelpComponent from "./components/YelpDemoComponent";
 import GooglePlacesDemo from "./components/GooglePlacesDemoComponent";
 import SignUp from "./components/SignUp";
 import { Container } from "react-bootstrap";
-import { AuthProvider } from "./contexts/AuthContext";
+import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import SignIn from "./components/SignIn";
+import HomeWrapper from "./components/HomeWrapper";
+import ForgotPassword from "./components/ForgotPassword";
 
 function App() {
   const { height, width } = useWindowDimensions();
-
+ 
   return (
     <Router>
       <div>
         <nav>
           <ul>
             {
-            /*
-            <li>
-              <Link to="/SignUp">Sign Up</Link>
-            </li>
-            */
+              /*
+              <li>
+                <Link to="/SignUp">Sign Up</Link>
+              </li>
+              */
             }
           </ul>
         </nav>
@@ -34,24 +36,45 @@ function App() {
               <AuthProvider>
                 <Container
                   className="d-flex align-items-center justify-content-center"
-                  style={{minHeight: "100vh"}}
+                  style={{ minHeight: "100vh" }}
                 >
-                  <div className="w-100" style={{maxWidth: "400px"}}>
+                  <div className="w-100" style={{ maxWidth: "400px" }}>
                     <SignUp></SignUp>
                   </div>
                 </Container>
               </AuthProvider>
             }
           ></Route>
-           <Route
+          <Route
+            path="/home"
+            element={
+             <HomeWrapper></HomeWrapper>
+            }
+          ></Route>
+          <Route
+            path="/ForgotPassword"
+            element={
+              <AuthProvider>
+              <Container
+                className="d-flex align-items-center justify-content-center"
+                style={{ minHeight: "100vh" }}
+              >
+                <div className="w-100" style={{ maxWidth: "400px" }}>
+                  <ForgotPassword></ForgotPassword>
+                </div>
+              </Container>
+            </AuthProvider>
+            }
+          ></Route>
+          <Route
             path="/SignIn"
             element={
               <AuthProvider>
                 <Container
                   className="d-flex align-items-center justify-content-center"
-                  style={{minHeight: "100vh"}}
+                  style={{ minHeight: "100vh" }}
                 >
-                  <div className="w-100" style={{maxWidth: "400px"}}>
+                  <div className="w-100" style={{ maxWidth: "400px" }}>
                     <SignIn></SignIn>
                   </div>
                 </Container>
