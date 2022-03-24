@@ -7,7 +7,7 @@ h5ZnJC2Z6QNEZt6iLSxW83zkQr6Obcb6WuP-rlxKw-8xU3mInevlmRnlBrs3M95W6FSR9ORrOslSlEO8
 */
 
 const apiKey = "h5ZnJC2Z6QNEZt6iLSxW83zkQr6Obcb6WuP-rlxKw-8xU3mInevlmRnlBrs3M95W6FSR9ORrOslSlEO8YUZOB5wwf6nmplIf2ZBq2GAIXRAZi9JbPvkxEkm3Pn4WYnYx"
-const corsAnywhere = "https://cors-anywhere.herokuapp.com/";
+const corsAnywhere = "0.0.0.0:8080/";
 
 export default async function searchYelp() {
     const url = `https://api.yelp.com/v3/businesses/search?term=Restaurants&location=Waco&sort_by=best_match`;

@@ -12,9 +12,9 @@ import SignIn from "./components/SignIn";
 import HomeWrapper from "./components/HomeWrapper";
 import ForgotPassword from "./components/ForgotPassword";
 
+
 function App() {
-  const { height, width } = useWindowDimensions();
- 
+
   return (
     <Router>
       <div>
@@ -48,22 +48,22 @@ function App() {
           <Route
             path="/home"
             element={
-             <HomeWrapper></HomeWrapper>
+              <HomeWrapper></HomeWrapper>
             }
           ></Route>
           <Route
             path="/ForgotPassword"
             element={
               <AuthProvider>
-              <Container
-                className="d-flex align-items-center justify-content-center"
-                style={{ minHeight: "100vh" }}
-              >
-                <div className="w-100" style={{ maxWidth: "400px" }}>
-                  <ForgotPassword></ForgotPassword>
-                </div>
-              </Container>
-            </AuthProvider>
+                <Container
+                  className="d-flex align-items-center justify-content-center"
+                  style={{ minHeight: "100vh" }}
+                >
+                  <div className="w-100" style={{ maxWidth: "400px" }}>
+                    <ForgotPassword></ForgotPassword>
+                  </div>
+                </Container>
+              </AuthProvider>
             }
           ></Route>
           <Route

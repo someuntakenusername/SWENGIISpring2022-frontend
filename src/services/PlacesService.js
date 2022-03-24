@@ -7,7 +7,7 @@ h5ZnJC2Z6QNEZt6iLSxW83zkQr6Obcb6WuP-rlxKw-8xU3mInevlmRnlBrs3M95W6FSR9ORrOslSlEO8
 */
 
 const apiKey = "AIzaSyCJYrN6ByIeKbZxymQ7LaESn-lHUhMZEXE"
-const corsAnywhere = "https://cors-anywhere.herokuapp.com/";
+const corsAnywhere = "0.0.0.0:8080/";
 
 export default async function searchPlaces() {
     const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=Wac&language=en&components=country:in|country:us&&key=AIzaSyCJYrN6ByIeKbZxymQ7LaESn-lHUhMZEXE`;
