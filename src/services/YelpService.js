@@ -141,19 +141,29 @@ export default async function searchYelp(cost, rating, reviews, contact, locatio
           ratingRank = index2;
         }
       }
-        
+      
+      var distanceScore = (distanceRank / distanceSort.length) * 100;
+      var numberScore = (numberRank / numberSort.length) * 100;
+      var ratingScore = (ratingRank / ratingSort.length) * 100;
+      var priceScore = (priceRank / priceSort.length) * 100;
+      
       if (businesses[index].phone){
-        contactRank = -1;
+        var contactScore = 5;
+      }
+
+      var totalRank = (distanceScore + numberScore + ratingScore + priceScore + contactScore) / 5
+      if (totalRank > 100){
+        totalRank = 100;
       }
      
-      businesses[index].rank = (distanceRank + numberRank + ratingRank + priceRank + contactRank) / 5;
+      businesses[index].rank = Math.round(totalRank);
       
     }
 
     businesses.sort((a,b) => {
-      if (a.rank < b.rank) {
+      if (a.rank > b.rank) {
         return -1;
-      }else if (b.rank < a.rank){
+      }else if (b.rank > a.rank){
         return 1;
       }else{
         return 0;

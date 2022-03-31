@@ -4,6 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useAuth } from "../contexts/AuthContext";
 import { getUsers } from "../services/UserService";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import searchYelp from "../services/YelpService";
 
 
@@ -18,12 +20,13 @@ export default function PreferenceChange() {
     const state = useRef();
     const [numErrorAttempt, setNumErrorAttempt] = useState(5);
     const { signin, currentUser } = useAuth();
-
+    let navigate = useNavigate();
     async function handleSubmit(e) {
+        
         e.preventDefault();
         console.log(city);
         var x = await searchYelp(cost, rating, reviews, contact, city.current.value + ", " + state.current.value);
-        
+        navigate("../resultsdemo", { replace: true, state: x });
     }
 
 
@@ -86,8 +89,8 @@ export default function PreferenceChange() {
                                 required
                             ></Form.Control>
                         </Form.Group>
-
-                        <Button
+    
+                            <Button
                             className="w-100"
                             disabled={loading}
                             style={{ marginTop: 10 }}
@@ -95,6 +98,9 @@ export default function PreferenceChange() {
                         >
                             Change
                         </Button>
+
+
+                       
                     </Form>
                 </Card.Body>
 

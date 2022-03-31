@@ -12,6 +12,7 @@ import SignIn from "./components/SignIn";
 import HomeWrapper from "./components/HomeWrapper";
 import ForgotPassword from "./components/ForgotPassword";
 import PreferenceChange from "./components/PreferenceChange";
+import ResultsDemo from "./components/ResultsDemo";
 
 
 function App() {
@@ -77,6 +78,21 @@ function App() {
                 >
                   <div className="w-100" style={{ maxWidth: "400px" }}>
                     <PreferenceChange></PreferenceChange>
+                  </div>
+                </Container>
+              </AuthProvider>
+            }
+          ></Route>
+           <Route
+            path="/ResultsDemo"
+            element={
+              <AuthProvider>
+                <Container
+                  className="d-flex align-items-center justify-content-center"
+                  style={{ minHeight: "100vh" }}
+                >
+                  <div className="w-100" style={{ maxWidth: "400px" }}>
+                    <ResultsDemo></ResultsDemo>
                   </div>
                 </Container>
               </AuthProvider>
