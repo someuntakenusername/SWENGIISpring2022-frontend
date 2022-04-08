@@ -26,7 +26,9 @@ export default function PreferenceChange() {
         e.preventDefault();
         console.log(city);
         var x = await searchYelp(cost, rating, reviews, contact, city.current.value + ", " + state.current.value);
-        navigate("../resultsdemo", { replace: true, state: x });
+        console.log(x);
+        console.log(x);
+        navigate("../resultsdemo", { state: x.data });
     }
 
 
