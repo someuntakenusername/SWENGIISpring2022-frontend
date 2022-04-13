@@ -19,7 +19,6 @@ export function AuthProvider({ children }) {
     };
 
     axios.post("http://localhost:80/user/createuser", userDTO).then((res) => {
-      console.log("Student added successfully!" + userDTO);
       setCurrentUser({
         nameFirst: nameFirst,
         nameLast: nameLast,
@@ -43,6 +42,5 @@ export function AuthProvider({ children }) {
     signup,
     signin
   };
-  console.log(value)
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

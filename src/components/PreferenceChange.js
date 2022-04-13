@@ -7,8 +7,10 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 import searchYelp from "../services/YelpService";
+import Geocode from "react-geocode";
+Geocode.setApiKey("AIzaSyCJYrN6ByIeKbZxymQ7LaESn-lHUhMZEXE");
 
-
+//AIzaSyCJYrN6ByIeKbZxymQ7LaESn-lHUhMZEXE
 export default function PreferenceChange() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
@@ -21,14 +23,21 @@ export default function PreferenceChange() {
     const [numErrorAttempt, setNumErrorAttempt] = useState(5);
     const { signin, currentUser } = useAuth();
     let navigate = useNavigate();
+
+
     async function handleSubmit(e) {
-        
         e.preventDefault();
-        console.log(city);
         var x = await searchYelp(cost, rating, reviews, contact, city.current.value + ", " + state.current.value);
-        console.log(x);
-        console.log(x);
-        navigate("../resultsdemo", { state: x.data });
+        Geocode.fromAddress(city.current.value + ", " + state.current.value).then(
+            (response) => {
+    
+              navigate("../home", {state:{locations: x.data, coords:response.results[0].geometry.location}});
+            },
+            (error) => {
+              console.error(error);
+            }
+          );
+        
     }
 
 

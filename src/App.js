@@ -32,6 +32,18 @@ function App() {
           </ul>
         </nav>
         <Routes>
+        <Route
+            path="/"
+            element={
+              <AuthProvider>
+                
+                  <div className="w-100" style={{  }}>
+                    <HomeWrapper></HomeWrapper>
+                  </div>
+        
+              </AuthProvider>
+            }
+          ></Route>
           <Route
             path="/SignUp"
             element={

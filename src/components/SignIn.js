@@ -23,7 +23,6 @@ export default function SignIn() {
         attemptUser = users[index];
       }
     }
-    console.log(attemptUser);
     if (attemptUser == null) {
       return setError("No Account For This Email. Try Again Or Create Account.");
     }

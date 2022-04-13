@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom'
 
 export default function ResultsDemo() {
     const { state } = useLocation();
-    console.log(state[0].name)
     const [locations, setLocations] = useState([]);
 
 

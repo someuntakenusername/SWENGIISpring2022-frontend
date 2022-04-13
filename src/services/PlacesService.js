@@ -20,7 +20,6 @@ export default async function searchPlaces() {
       const response = await data.json();
 
   if (response) {
-        console.log(response.predictions);
     }
 
     return response.predictions

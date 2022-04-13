@@ -18,7 +18,6 @@ class YelpComponent extends React.Component {
                 namesOfLocations:[...this.state.namesOfLocations, <li key={x[index].name}>{x[index].name}</li>]
             })
         }
-        console.log(this.state.namesOfLocations)
     }
 
     

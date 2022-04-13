@@ -18,7 +18,6 @@ export default class GooglePlacesDemo extends Component {
                 nameOfPlaces:[...this.state.nameOfPlaces, <li key={x[index].description}>{x[index].description}</li>]
             })
         }
-        console.log(this.state.nameOfPlaces)
 }
 
   render() {
