@@ -5,6 +5,9 @@ import { useAuth } from "../contexts/AuthContext";
 import { getUsers } from "../services/UserService";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+import { inspect } from 'util' // or directly
+
 
 import searchYelp from "../services/YelpService";
 import Geocode from "react-geocode";
@@ -27,17 +30,29 @@ export default function PreferenceChange() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        var x = await searchYelp(cost, rating, reviews, contact, city.current.value + ", " + state.current.value);
         Geocode.fromAddress(city.current.value + ", " + state.current.value).then(
             (response) => {
-    
-              navigate("../home", {state:{locations: x.data, coords:response.results[0].geometry.location}});
+                const prefDTO = {
+                    id: currentUser.id,
+                    cost: cost,
+                    rating: rating,
+                    reviews: reviews,
+                    contact: contact,
+                    city: city.current.value + ", " + state.current.value
+                  };
+                  console.log(prefDTO)
+                axios.post("http://localhost:80/preference/createpreference", prefDTO).then(async (res) => {
+                  if (currentUser){
+                    navigate("../dashboard");
+
+                  }
+                });
             },
             (error) => {
-              console.error(error);
+                console.error(error);
             }
-          );
-        
+        );
+
     }
 
 
@@ -100,8 +115,8 @@ export default function PreferenceChange() {
                                 required
                             ></Form.Control>
                         </Form.Group>
-    
-                            <Button
+
+                        <Button
                             className="w-100"
                             disabled={loading}
                             style={{ marginTop: 10 }}
@@ -111,7 +126,7 @@ export default function PreferenceChange() {
                         </Button>
 
 
-                       
+
                     </Form>
                 </Card.Body>
 

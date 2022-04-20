@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useAuth } from "../contexts/AuthContext";
 import { getUsers } from "../services/UserService";
 import { Link, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const bcrypt = require('bcryptjs')
 
 export default function SignIn() {
@@ -13,8 +14,10 @@ export default function SignIn() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [numErrorAttempt, setNumErrorAttempt] = useState(5);
- 
+  let navigate = useNavigate();
+  console.log(currentUser)
   async function handleSubmit(e) {
+    
     e.preventDefault();
     var users = (await getUsers()).data;
     var attemptUser = null;
@@ -39,14 +42,15 @@ export default function SignIn() {
     }
     setLoading(true);
     setNumErrorAttempt(5);
-    signin(attemptUser.email, attemptUser.firstName, attemptUser.lastName)
+    signin(attemptUser.email, attemptUser.firstName, attemptUser.lastName, attemptUser.id)
+    navigate("../preferenceChange");
     setLoading(false);
   }
   return (
     <>
       {currentUser &&
         <div style = {{display: 'flex', alignContent: 'center', alignItems: 'center', justifyContent: 'center'}}>
-            <text>{"Welcome " + currentUser.nameFirst + " " + currentUser.nameLast + "!"}</text>
+           {"You are already signed in!"}
         </div>
       }
       {!currentUser &&

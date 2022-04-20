@@ -21,6 +21,7 @@
     "react-google-places-autocomplete": "^3.3.4",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
+    "util": "^0.12.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { MapComponent } from "./components/MapComponent";
 import "./App.css";
 import useWindowDimensions from "./FunctionReferences/WindowDimensions";
@@ -13,8 +13,8 @@ import HomeWrapper from "./components/HomeWrapper";
 import ForgotPassword from "./components/ForgotPassword";
 import PreferenceChange from "./components/PreferenceChange";
 import ResultsDemo from "./components/ResultsDemo";
-
-
+import Links from "./components/link";
+import UserDashboard from "./components/UserDashboard";
 function App() {
 
   return (
@@ -23,27 +23,30 @@ function App() {
         <nav>
           <ul>
             {
-              /*
-              <li>
-                <Link to="/SignUp">Sign Up</Link>
-              </li>
-              */
+              <>
+                <AuthProvider>
+                  <Links to="/SignUp" message="Sign Up"></Links>
+                </AuthProvider>
+                <AuthProvider>
+                  <Links to="/" message="Sign In"></Links>
+                </AuthProvider>
+                <AuthProvider>
+                  <Links to="/dashboard" message="User Dashboard"></Links>
+                </AuthProvider>
+                <AuthProvider>
+                  <Links to="/preferenceChange" message="Change Preferences"></Links>
+                </AuthProvider>
+              </>
+
+            }
+            {
+              //<li>
+              //<Link to="/">Sign In</Link>
+              // </li>
             }
           </ul>
         </nav>
         <Routes>
-        <Route
-            path="/"
-            element={
-              <AuthProvider>
-                
-                  <div className="w-100" style={{  }}>
-                    <HomeWrapper></HomeWrapper>
-                  </div>
-        
-              </AuthProvider>
-            }
-          ></Route>
           <Route
             path="/SignUp"
             element={
@@ -56,6 +59,22 @@ function App() {
                     <SignUp></SignUp>
                   </div>
                 </Container>
+              </AuthProvider>
+            }
+          ></Route>
+          <Route
+            path="/dashboard"
+            element={
+              <AuthProvider>
+                <Container
+            
+                  style={{ display: 'flex', minHeight: '100vh' }}
+                >
+
+                 <UserDashboard></UserDashboard>
+
+                </Container>
+
               </AuthProvider>
             }
           ></Route>
@@ -80,7 +99,7 @@ function App() {
               </AuthProvider>
             }
           ></Route>
-           <Route
+          <Route
             path="/PreferenceChange"
             element={
               <AuthProvider>
@@ -95,7 +114,7 @@ function App() {
               </AuthProvider>
             }
           ></Route>
-           <Route
+          <Route
             path="/ResultsDemo"
             element={
               <AuthProvider>
@@ -111,7 +130,7 @@ function App() {
             }
           ></Route>
           <Route
-            path="/SignIn"
+            path="/"
             element={
               <AuthProvider>
                 <Container

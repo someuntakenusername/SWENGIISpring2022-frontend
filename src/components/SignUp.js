@@ -11,7 +11,7 @@ export default function SignUp() {
   const passwordConfirmRef = useRef();
   const nameFirstRef = useRef();
   const nameLastRef = useRef();
-  const { signup } = useAuth();
+  const { signup, currentUser } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   async function handleSubmit(e) {
@@ -48,7 +48,12 @@ export default function SignUp() {
   }
   return (
     <>
-      <Card>
+    {currentUser &&
+        <div style = {{display: 'flex', alignContent: 'center', alignItems: 'center', justifyContent: 'center'}}>
+           {"You are already signed in!"}
+        </div>
+      }
+      {!currentUser && <Card>
         <Card.Body>
           <h2 className="text-center mb-2">Sign Up</h2>
           {error && <Alert variant="danger">{error}</Alert>}
@@ -100,7 +105,10 @@ export default function SignUp() {
           </Form>
         </Card.Body>
       </Card>
-      <div className="w-100 text-center mt-2"><Link className="w-100 text-center mt-2" to="/SignIn"> Have an account? Click Here. </Link></div> 
+}
+{!currentUser && 
+      <div className="w-100 text-center mt-2"><Link className="w-100 text-center mt-2" to="/"> Have an account? Click Here. </Link></div> 
+}
     </>
   );
 }

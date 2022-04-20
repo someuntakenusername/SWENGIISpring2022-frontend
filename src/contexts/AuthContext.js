@@ -1,14 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import axios from 'axios';
 const bcrypt = require('bcryptjs')
-const AuthContext = React.createContext();
+export const AuthContext = React.createContext();
 
 export function useAuth() {
   return useContext(AuthContext);
 }
 
 export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState(null);
+
 
   function signup(email, nameFirst, nameLast, password) {
     const userDTO = {
@@ -18,18 +19,22 @@ export function AuthProvider({ children }) {
       password: bcrypt.hashSync(password, bcrypt.genSaltSync())
     };
 
-    axios.post("http://localhost:80/user/createuser", userDTO).then((res) => {
+    axios.post("http://localhost:80/user/createuser", userDTO).then(async(res) => {
+       var user = await res.data;
       setCurrentUser({
+        id: user.id,
         nameFirst: nameFirst,
         nameLast: nameLast,
         email: email,
       });
     });
+    console.log(currentUser);
     return currentUser;
   }
 
-  function signin(email, nameFirst, nameLast) {
+  function signin(email, nameFirst, nameLast, id) {
     setCurrentUser({
+      id: id,
       nameFirst: nameFirst,
       nameLast: nameLast,
       email: email,
