@@ -41,6 +41,10 @@ function App() {
                 <AuthProvider>
                   <Links to="/preferenceChange" message="Change Preferences"></Links>
                 </AuthProvider>
+                <AuthProvider>
+                  <Links to="/home" message="Map"></Links>
+                </AuthProvider>
+              
               </>
 
             }
@@ -87,7 +91,10 @@ function App() {
           <Route
             path="/home"
             element={
-              <HomeWrapper></HomeWrapper>
+              <AuthProvider>
+              <HomeWrapper></HomeWrapper>        
+                    </AuthProvider>
+
             }
           ></Route>
           <Route

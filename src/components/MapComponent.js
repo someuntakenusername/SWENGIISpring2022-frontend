@@ -17,18 +17,12 @@ function exportLocations(state) {
 
 export const MapComponent = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
-    defaultZoom={8}
+    defaultZoom={4}
     defaultCenter= {{lat: props.lng, lng: props.long }}
     options={{fullscreenControl: false,streetViewControl: false, rotateControl: false, mapTypeControl: false, keyboardShortcuts: false, scaleControl: false}}
   >
 
-    <Marker
-    
-      position={ props.selectedPin ? {lat: props.selectedPin.latitude, lng: props.selectedPin.longitude} : null}
-    >
-
-    </Marker>
-    
+    {props.markers}
   </GoogleMap>
 ))
 

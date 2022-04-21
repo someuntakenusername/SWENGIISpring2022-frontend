@@ -16,6 +16,9 @@ export default function UserDashboard() {
     const handleClick = () => {
         logout();
     };
+    const handleClick1 = () => {
+        navigate("../home");
+    };
 
     return (
         <>
@@ -42,6 +45,13 @@ export default function UserDashboard() {
                                     </u>
 
                                 </h3>
+                                <Button
+                                        variant="primary"
+                            
+                                        onClick={handleClick1}
+                                    >
+                                        View On Map
+                                    </Button>
                                 <Recomended currentUser={currentUser} navigate={useNavigate}></Recomended>
                             </div>
                         </div>

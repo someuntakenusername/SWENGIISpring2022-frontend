@@ -5,6 +5,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useLocation, Route } from 'react-router-dom'
 import ResultsDemo from './ResultsDemo';
 import { Button } from 'react-bootstrap';
+import MapWrapper from './MapWrapper';
 
 function exportLocations(state, setSelected, selected) {
   let renderArray = [];
@@ -20,30 +21,29 @@ function exportLocations(state, setSelected, selected) {
 
 
 export default function HomeWrapper({route, navigation}) {
-  const { state } = useLocation();
+  
   const { height, width } = useWindowDimensions();
+
+  const { signin, currentUser, logout } = useAuth();
+
   const [locations, setLocations] = useState([]);
   const [selected, setSelected] = useState(null);
-  useEffect(() => {
-    setSelected(selected);
-  }, [selected]);
+
   return (
+    <MapWrapper currentUser={currentUser}></MapWrapper>
+    /*
     <div style = {{display: 'flex', flexDirection: 'row'}}>
     <MapComponent
       googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJYrN6ByIeKbZxymQ7LaESn-lHUhMZEXE&v=3.exp&libraries=geometry,drawing,places"
-      loadingElement={<div style={{ height: height, width: width/2 }} />}
-      containerElement={<div style={{ height: height, width: width/2 }} />}
-      mapElement={<div style={{ height: height, width: width/2 }} />}
-      lng = {state.coords.lat}
-      long = {state.coords.lng}
-      locations = {state.locations}
-      selectedPin = {selected}
+      loadingElement={<div style={{ height: height, width: width }} />}
+      containerElement={<div style={{ height: height, width: width }} />}
+      mapElement={<div style={{ height: height, width: width }} />}
+      
 
     >
     </MapComponent>
-    <ul style = {{}}>
-        {exportLocations(state.locations, setSelected, selected)}
-    </ul>
+  
   </div>
+  */
   )
 }

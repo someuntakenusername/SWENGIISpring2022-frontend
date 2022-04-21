@@ -42,7 +42,7 @@ export default function SignIn() {
     setLoading(true);
     setNumErrorAttempt(5);
     signin(attemptUser.email, attemptUser.firstName, attemptUser.lastName, attemptUser.id)
-    navigate("../preferenceChange");
+    navigate("../dashboard");
     setLoading(false);
   }
   return (
