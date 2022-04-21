@@ -5,14 +5,17 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import searchYelp from '../services/YelpService';
 import Recomended from './Recomended';
 import Bookmarked from './Bookmarked';
+import { Button } from 'react-bootstrap';
 
 
 export default function UserDashboard() {
-    const { signin, currentUser } = useAuth();
+    const { signin, currentUser, logout } = useAuth();
     const [locations, setLocations] = useState(null);
     let navigate = useNavigate();
 
-
+    const handleClick = () => {
+        logout();
+    };
 
     return (
         <>
@@ -62,7 +65,15 @@ export default function UserDashboard() {
                                     <u>
                                         Manage Account
                                     </u>
+                                   
                                 </h3>
+                                <Button
+                                        variant="primary"
+                            
+                                        onClick={handleClick}
+                                    >
+                                        Log Out
+                                    </Button>
                             </div>
                         </div>
                     </div>
@@ -70,7 +81,7 @@ export default function UserDashboard() {
                 </div>
             }
             {!currentUser && <div className="w-100 text-center mt-2"><Link className="w-100 text-center mt-2" to="/"> Please Login/Sign-Up To Access </Link></div>
-}
+            }
         </>
     )
 

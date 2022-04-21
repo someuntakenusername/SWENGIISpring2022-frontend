@@ -38,13 +38,17 @@ export function AuthProvider({ children }) {
       nameLast: nameLast,
       email: email,
     });
+  }
 
+  function logout() {
+    setCurrentUser(null);
   }
 
   const value = {
     currentUser,
     signup,
-    signin
+    signin,
+    logout
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
