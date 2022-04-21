@@ -4,6 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import searchYelp from '../services/YelpService';
 import Recomended from './Recomended';
+import Bookmarked from './Bookmarked';
 
 
 export default function UserDashboard() {
@@ -26,6 +27,8 @@ export default function UserDashboard() {
                                         Bookmarked Resorts
                                     </u>
                                 </h3>
+                                <Bookmarked currentUser={currentUser} navigate={useNavigate}></Bookmarked>
+
                             </div>
                         </div>
                         <div style={{ flex: 0.5 }}>
