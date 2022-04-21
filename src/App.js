@@ -15,8 +15,13 @@ import PreferenceChange from "./components/PreferenceChange";
 import ResultsDemo from "./components/ResultsDemo";
 import Links from "./components/link";
 import UserDashboard from "./components/UserDashboard";
-function App() {
+import LocationDetails from "./components/LocationDetails";
+import LeaveReviewContainer from "./components/LeaveReviewContainer";
 
+import LeaveReview from "./components/LeaveReview";
+import ReadReviewContainer from "./components/ReadReviewContainer";
+function App() {
+  
   return (
     <Router>
       <div>
@@ -62,6 +67,7 @@ function App() {
               </AuthProvider>
             }
           ></Route>
+    
           <Route
             path="/dashboard"
             element={
@@ -141,6 +147,42 @@ function App() {
                     <SignIn></SignIn>
                   </div>
                 </Container>
+              </AuthProvider>
+            }
+          ></Route>
+          <Route
+            path="/dashboard/details"
+            element={
+              <AuthProvider>
+                
+                  <div className="w-100" style={{ width: "100vh" }}>
+                    <LocationDetails></LocationDetails>
+                  </div>
+            
+              </AuthProvider>
+            }
+          ></Route>
+          <Route
+            path="/leaveReview"
+            element={
+              <AuthProvider>
+                
+                  <div className="w-100" style={{ width: "100vh" }}>
+                    <LeaveReviewContainer></LeaveReviewContainer>
+                  </div>
+            
+              </AuthProvider>
+            }
+          ></Route>
+          <Route
+            path="/readReview"
+            element={
+              <AuthProvider>
+                
+                  <div className="w-100" style={{ width: "100vh" }}>
+                    <ReadReviewContainer></ReadReviewContainer>
+                  </div>
+            
               </AuthProvider>
             }
           ></Route>

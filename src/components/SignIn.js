@@ -15,7 +15,6 @@ export default function SignIn() {
   const [loading, setLoading] = useState(false);
   const [numErrorAttempt, setNumErrorAttempt] = useState(5);
   let navigate = useNavigate();
-  console.log(currentUser)
   async function handleSubmit(e) {
     
     e.preventDefault();

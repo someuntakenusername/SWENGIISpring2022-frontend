@@ -9,27 +9,29 @@ export default class Recomended extends Component {
         this.state = {
             currentUser: props.currentUser,
             locations: null,
-            renderLocations: []
+            renderLocations: [],
+            navigate:props.navigate
         }
     }
 
 
     componentDidMount = async () => {
-        console.log(this.state.currentUser)
         if (this.state.currentUser){
             this.setState({
                 locations: await ((await getPreferenceID(this.state.currentUser.id)).data)
             })
-            console.log(this.state.locations)
     
             let renderArray = [];
             for (let index = 0; index < this.state.locations.length; index++) {
-                renderArray = [...renderArray, <li key={this.state.locations[index].name} style={{ paddingTop: 10 }}>{this.state.locations[index].name + ": " + this.state.locations[index].rank}</li>]
+                renderArray = [...renderArray, <Link to={"details"} state = {{id: this.state.locations[index].id, currentUser: this.state.currentUser}}><li key={this.state.locations[index].id} style={{ paddingTop: 10 }}>
+                
+                        {this.state.locations[index].name + ": " + this.state.locations[index].rank}
+                  
+                    </li></Link>]
             }
             this.setState({
                 renderLocations: renderArray
             })
-            console.log(this.state.renderLocations)
         }else{
             this.setState({
                 renderLocations: <div></div>
@@ -40,7 +42,6 @@ export default class Recomended extends Component {
 
     render() {
         if (this.state.renderLocations.length < 1){
-            console.log("Here")
             return (
                 <div className="w-100 text-center mt-2"><Link className="w-100 text-center mt-2" to="/preferenceChange"> Update Your Preferences! </Link></div>
             )

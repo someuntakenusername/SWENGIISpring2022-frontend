@@ -11,6 +11,11 @@ const apiKey = "h5ZnJC2Z6QNEZt6iLSxW83zkQr6Obcb6WuP-rlxKw-8xU3mInevlmRnlBrs3M95W
 const corsAnywhere = "http://127.0.0.1:8080/";
 
 export default async function searchYelp(cost, rating, reviews, contact, location) {
-  const USERS_REST_API_URL = 'http://localhost:80/locations/' + cost + "/" + rating + "/" + reviews + "/" + contact + "/" + location;
+  const USERS_REST_API_URL = 'https://blueflannel-backend.herokuapp.com/locations/' + cost + "/" + rating + "/" + reviews + "/" + contact + "/" + location;
+  return(axios.get(USERS_REST_API_URL));
+}
+
+export async function byID(id) {
+  const USERS_REST_API_URL = 'https://blueflannel-backend.herokuapp.com/locations/byid/' + id;
   return(axios.get(USERS_REST_API_URL));
 }

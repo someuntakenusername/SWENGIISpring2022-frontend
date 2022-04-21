@@ -19,7 +19,7 @@ export function AuthProvider({ children }) {
       password: bcrypt.hashSync(password, bcrypt.genSaltSync())
     };
 
-    axios.post("http://localhost:80/user/createuser", userDTO).then(async(res) => {
+    axios.post("https://blueflannel-backend.herokuapp.com/user/createuser", userDTO).then(async(res) => {
        var user = await res.data;
       setCurrentUser({
         id: user.id,
@@ -28,7 +28,6 @@ export function AuthProvider({ children }) {
         email: email,
       });
     });
-    console.log(currentUser);
     return currentUser;
   }
 

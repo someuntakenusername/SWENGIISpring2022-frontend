@@ -27,7 +27,6 @@ export default function HomeWrapper({route, navigation}) {
   useEffect(() => {
     setSelected(selected);
   }, [selected]);
-  console.log(state.coords)
   return (
     <div style = {{display: 'flex', flexDirection: 'row'}}>
     <MapComponent

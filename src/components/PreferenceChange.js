@@ -40,11 +40,9 @@ export default function PreferenceChange() {
                     contact: contact,
                     city: city.current.value + ", " + state.current.value
                   };
-                  console.log(prefDTO)
-                axios.post("http://localhost:80/preference/createpreference", prefDTO).then(async (res) => {
+                axios.post("https://blueflannel-backend.herokuapp.com/preference/createpreference", prefDTO).then(async (res) => {
                   if (currentUser){
                     navigate("../dashboard");
-
                   }
                 });
             },
