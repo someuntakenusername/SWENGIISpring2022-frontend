@@ -15,6 +15,12 @@ export default async function searchYelp(cost, rating, reviews, contact, locatio
   return(axios.get(USERS_REST_API_URL));
 }
 
+export async function searchLocation(location) {
+  console.log("Here again")
+  const USERS_REST_API_URL = 'https://blueflannel-backend.herokuapp.com/locations/search/' + location;
+  return(axios.get(USERS_REST_API_URL));
+}
+
 export async function byID(id) {
   const USERS_REST_API_URL = 'https://blueflannel-backend.herokuapp.com/locations/byid/' + id;
   return(axios.get(USERS_REST_API_URL));

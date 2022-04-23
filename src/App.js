@@ -20,6 +20,7 @@ import LeaveReviewContainer from "./components/LeaveReviewContainer";
 
 import LeaveReview from "./components/LeaveReview";
 import ReadReviewContainer from "./components/ReadReviewContainer";
+import AddLocation from "./components/AddLocation";
 function App() {
   
   return (
@@ -128,6 +129,21 @@ function App() {
             }
           ></Route>
           <Route
+            path="/addlocation"
+            element={
+              <AuthProvider>
+                <Container
+                  className="d-flex align-items-center justify-content-center"
+                  style={{ minHeight: "100vh" }}
+                >
+                  <div className="w-100" style={{ maxWidth: "400px" }}>
+                    <AddLocation></AddLocation>
+                  </div>
+                </Container>
+              </AuthProvider>
+            }
+          ></Route>
+          <Route
             path="/ResultsDemo"
             element={
               <AuthProvider>
@@ -169,6 +185,7 @@ function App() {
               </AuthProvider>
             }
           ></Route>
+         
           <Route
             path="/leaveReview"
             element={

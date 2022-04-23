@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import UserService from '../services/UserService';
 import { GoogleMap, withGoogleMap, withScriptjs, Marker, InfoWindow } from "react-google-maps"
-
+import { Link } from 'react-router-dom';
 
 
 function exportLocations(state) {
@@ -15,7 +15,10 @@ function exportLocations(state) {
   return renderArray;
 }
 
+
+
 export const MapComponent = withScriptjs(withGoogleMap((props) =>
+<>
   <GoogleMap
     defaultZoom={4}
     defaultCenter= {{lat: props.lng, lng: props.long }}
@@ -23,6 +26,8 @@ export const MapComponent = withScriptjs(withGoogleMap((props) =>
   >
 
     {props.markers}
+    {props.searchMarkers}
   </GoogleMap>
+  </>
 ))
 

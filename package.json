@@ -12,6 +12,7 @@
     "cors-anywhere": "^0.4.4",
     "http": "^0.0.1-security",
     "https": "^1.0.0",
+    "mdbreact": "^5.2.0",
     "net": "^1.0.2",
     "react": "^17.0.1",
     "react-axios": "^2.0.5",

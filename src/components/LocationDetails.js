@@ -3,11 +3,14 @@ import { byID } from '../services/YelpService'
 import { Link, useLocation } from "react-router-dom";
 import LocationInformation from './LocationInformation';
 
-export default function LocationDetails () {
+var LocationDetails;
+export default  LocationDetails = (props) => {
     
     const location = useLocation()
     
     return (
-      <LocationInformation id={location.state.id} currentUser={location.state.currentUser}></LocationInformation>
+      <LocationInformation id={location.state ? location.state.id : props.id } currentUser={location.state ? location.state.currentUser : props.currentUser}></LocationInformation>
     )
 }
+
+

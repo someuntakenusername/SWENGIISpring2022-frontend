@@ -20,6 +20,10 @@ export default function UserDashboard() {
         navigate("../home");
     };
 
+    const handleClick2 = () => {
+        navigate("../addlocation");
+    };
+
     return (
         <>
             {
@@ -61,12 +65,16 @@ export default function UserDashboard() {
                             <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center', alignItems: 'center', justifyContent: 'center', alignSelf: 'center' }}>
                                 <h3>
                                     <u>
-                                        Notifications
+                                        Owner Information
                                     </u>
                                 </h3>
-                                <body>
-                                    Coming Soon!!
-                                </body>
+                                <Button
+                                        variant="primary"
+                            
+                                        onClick={handleClick2}
+                                    >
+                                        Create Location
+                                    </Button>
                             </div>
                         </div>
                         <div style={{ flex: 0.5 }}>

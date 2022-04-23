@@ -11,18 +11,20 @@ import { inspect } from 'util' // or directly
 
 import searchYelp from "../services/YelpService";
 import Geocode from "react-geocode";
+import { createLocation } from "../services/ReviewService";
 Geocode.setApiKey("AIzaSyCJYrN6ByIeKbZxymQ7LaESn-lHUhMZEXE");
 
 //AIzaSyCJYrN6ByIeKbZxymQ7LaESn-lHUhMZEXE
-export default function PreferenceChange() {
+export default function AddLocation() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const [cost, setCost] = useState('2');
     const [reviews, setReviews] = useState('20');
     const [rating, setRating] = useState('3');
     const [contact, setContact] = useState('no');
-    const city = useRef();
-    const state = useRef();
+    const address = useRef();
+    const phone = useRef();
+    const name = useRef();
     const [numErrorAttempt, setNumErrorAttempt] = useState(5);
     const { signin, currentUser } = useAuth();
     let navigate = useNavigate();
@@ -30,27 +32,12 @@ export default function PreferenceChange() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        Geocode.fromAddress(city.current.value + ", " + state.current.value).then(
-            (response) => {
-                const prefDTO = {
-                    id: currentUser.id,
-                    cost: cost,
-                    rating: rating,
-                    reviews: reviews,
-                    contact: contact,
-                    city: city.current.value + ", " + state.current.value
-                  };
-                axios.post("https://blueflannel-backend.herokuapp.com/preference/createpreference", prefDTO).then(async (res) => {
-                  if (currentUser){
-                    navigate("../dashboard");
-                  }
-                });
-            },
-            (error) => {
-                console.error(error);
-            }
-        );
-
+        console.log(cost)
+       console.log(address.current.value)
+       console.log(phone.current.value)
+       console.log(name.current.value)
+       createLocation(cost, name.current.value, address.current.value, phone.current.value, currentUser.id)
+       navigate("../dashboard")
     }
 
 
@@ -60,7 +47,7 @@ export default function PreferenceChange() {
             }
             {currentUser && <Card>
                 <Card.Body>
-                    <h2 className="text-center mb-2">Set Location Preferences</h2>
+                    <h2 className="text-center mb-2">Add Location</h2>
                     {error && <Alert variant="danger">{error}</Alert>}
                     <Form onSubmit={(e) => handleSubmit(e)}>
                         <Form.Group id="price" >
@@ -72,49 +59,32 @@ export default function PreferenceChange() {
                                 <option value={'4'}>$$$$</option>
                             </select>
                         </Form.Group>
-                        <Form.Group id="rating" >
-                            <Form.Label>Rating</Form.Label>
-                            <select className="w-100" value={rating} onChange={(event) => setRating(event.target.value)}>
-                                <option value={'1'}> ⭐ </option>
-                                <option value={'2'}> ⭐ ⭐ </option>
-                                <option value={'3'}> ⭐ ⭐ ⭐ </option>
-                                <option value={'4'}> ⭐ ⭐ ⭐ ⭐ </option>
-                                <option value={'5'}> ⭐ ⭐ ⭐ ⭐ ⭐ </option>
-                            </select>
-                        </Form.Group>
-                        <Form.Group id="reviews" >
-                            <Form.Label>Number Of Reviews</Form.Label>
-                            <select className="w-100" value={reviews} onChange={(event) => setReviews(event.target.value)}>
-                                <option value={'10'}> 10+ </option>
-                                <option value={'20'}> 20+ </option>
-                                <option value={'30'}> 30+ </option>
-                                <option value={'40'}> 30+ </option>
-                                <option value={'50'}> 50+ </option>
-                            </select>
-                        </Form.Group>
-                        <Form.Group id="contact" >
-                            <Form.Label>Contact Info Required?</Form.Label>
-                            <select className="w-100" value={contact} onChange={(event) => setContact(event.target.value)}>
-                                <option value={'yes'}> Yes </option>
-                                <option value={'no'}> No </option>
-                            </select>
+                       
+                        <Form.Group id="city">
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control
+                                type="text"
+                                ref={name}
+                                required
+                            ></Form.Control>
                         </Form.Group>
                         <Form.Group id="city">
-                            <Form.Label>City</Form.Label>
+                            <Form.Label>Address</Form.Label>
                             <Form.Control
                                 type="text"
-                                ref={city}
+                                ref={address}
                                 required
                             ></Form.Control>
                         </Form.Group>
-                        <Form.Group id="state">
-                            <Form.Label>State</Form.Label>
+                        <Form.Group id="city">
+                            <Form.Label>Phone</Form.Label>
                             <Form.Control
                                 type="text"
-                                ref={state}
+                                ref={phone}
                                 required
                             ></Form.Control>
                         </Form.Group>
+                        
 
                         <Button
                             className="w-100"
