@@ -21,6 +21,7 @@ import LeaveReviewContainer from "./components/LeaveReviewContainer";
 import LeaveReview from "./components/LeaveReview";
 import ReadReviewContainer from "./components/ReadReviewContainer";
 import AddLocation from "./components/AddLocation";
+import CreateOwnerContainer from "./components/CreateOwnerContainer";
 function App() {
   
   return (
@@ -193,6 +194,18 @@ function App() {
                 
                   <div className="w-100" style={{ width: "100vh" }}>
                     <LeaveReviewContainer></LeaveReviewContainer>
+                  </div>
+            
+              </AuthProvider>
+            }
+          ></Route>
+          <Route
+            path="/createOwner"
+            element={
+              <AuthProvider>
+                
+                  <div className="w-100" style={{ width: "100vh" }}>
+                    <CreateOwnerContainer></CreateOwnerContainer>
                   </div>
             
               </AuthProvider>

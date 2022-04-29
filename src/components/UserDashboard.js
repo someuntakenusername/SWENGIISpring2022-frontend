@@ -6,6 +6,7 @@ import searchYelp from '../services/YelpService';
 import Recomended from './Recomended';
 import Bookmarked from './Bookmarked';
 import { Button } from 'react-bootstrap';
+import OwnerLocations from './OwnerLocations';
 
 
 export default function UserDashboard() {
@@ -16,13 +17,16 @@ export default function UserDashboard() {
     const handleClick = () => {
         logout();
     };
+
+    const createOwner = () => {
+        navigate("../createOwner");
+    };
+
     const handleClick1 = () => {
         navigate("../home");
     };
 
-    const handleClick2 = () => {
-        navigate("../addlocation");
-    };
+   
 
     return (
         <>
@@ -68,13 +72,8 @@ export default function UserDashboard() {
                                         Owner Information
                                     </u>
                                 </h3>
-                                <Button
-                                        variant="primary"
-                            
-                                        onClick={handleClick2}
-                                    >
-                                        Create Location
-                                    </Button>
+                                <OwnerLocations currentUser={currentUser} navigate={useNavigate}></OwnerLocations>
+                               
                             </div>
                         </div>
                         <div style={{ flex: 0.5 }}>
@@ -91,6 +90,13 @@ export default function UserDashboard() {
                                         onClick={handleClick}
                                     >
                                         Log Out
+                                    </Button>
+                                    <Button
+                                        variant="primary"
+                                        style={{marginTop: 10}}
+                                        onClick={createOwner}
+                                    >
+                                        Become a Location Owner
                                     </Button>
                             </div>
                         </div>
