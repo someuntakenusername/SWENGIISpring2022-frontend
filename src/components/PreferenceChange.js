@@ -11,7 +11,7 @@ import { inspect } from 'util' // or directly
 
 import searchYelp from "../services/YelpService";
 import Geocode from "react-geocode";
-Geocode.setApiKey("AIzaSyCJYrN6ByIeKbZxymQ7LaESn-lHUhMZEXE");
+Geocode.setApiKey("AIzaSyC19VPIcLkYWXkFLwpUbAFWlEsj2EUGzsc");
 
 //AIzaSyCJYrN6ByIeKbZxymQ7LaESn-lHUhMZEXE
 export default function PreferenceChange() {
@@ -40,6 +40,7 @@ export default function PreferenceChange() {
                     contact: contact,
                     city: city.current.value + ", " + state.current.value
                   };
+                  console.log(prefDTO)
                 axios.post("https://blueflannel-backend.herokuapp.com/preference/createpreference", prefDTO).then(async (res) => {
                   if (currentUser){
                     navigate("../dashboard");
