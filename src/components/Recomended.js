@@ -23,7 +23,7 @@ export default class Recomended extends Component {
     
             let renderArray = [];
             for (let index = 0; index < this.state.locations.length; index++) {
-                renderArray = [...renderArray, <Link to={"details"} state = {{id: this.state.locations[index].id, currentUser: this.state.currentUser}}><li key={this.state.locations[index].id} style={{ paddingTop: 10 }}>
+                renderArray = [...renderArray, <Link to={"/recommendeddashboard/details"} state = {{id: this.state.locations[index].id, currentUser: this.state.currentUser}}><li key={this.state.locations[index].id} style={{ paddingTop: 10 }}>
                 
                         {this.state.locations[index].name + ": " + this.state.locations[index].rank}
                   
