@@ -3,7 +3,7 @@ import { Card, Form, Button, Alert } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useAuth } from "../contexts/AuthContext";
 import { getUsers } from "../services/UserService";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const emailRef = useRef();
@@ -14,6 +14,7 @@ export default function SignUp() {
   const { signup, currentUser } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  let navigate = useNavigate();
   async function handleSubmit(e) {
     e.preventDefault();
     if (passwordConfirmRef.current.value !== passwordRef.current.value) {
@@ -39,7 +40,7 @@ export default function SignUp() {
         nameLastRef.current.value,
         passwordRef.current.value
       );
-      
+      navigate("../home")
     } catch {
       e.preventDefault();
       setError("Failed To Create An Account");

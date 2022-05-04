@@ -3,7 +3,7 @@ import { Card, Form, Button, Alert } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useAuth } from "../contexts/AuthContext";
 import { getUsers } from "../services/UserService";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 const bcrypt = require('bcryptjs')
 
@@ -42,7 +42,7 @@ export default function SignIn() {
     setLoading(true);
     setNumErrorAttempt(5);
     signin(attemptUser.email, attemptUser.firstName, attemptUser.lastName, attemptUser.id)
-    navigate("../dashboard");
+    navigate("../home");
     setLoading(false);
   }
   return (

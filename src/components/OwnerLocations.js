@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-import { getPreferenceID } from '../services/PreferenceService'
 import { Link } from "react-router-dom";
-import { createLocation, editLocation, getUserLocations } from '../services/ReviewService';
+import { createLocation, getUserLocations } from '../services/ReviewService';
 
 import { Form } from 'react-bootstrap';
-import { Alert } from 'react-bootstrap';
 import { Card } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { getOwnerById } from '../services/ownerService';
@@ -88,7 +86,10 @@ export default class OwnerLocations extends Component {
         
             return (
                 <>
-                {!this.state.showLoc && this.state.owner && <ul style={{maxHeight: '45vh', overflowY: 'scroll'}}>
+                {!this.state.owner && this.state.currentUser && <div className="w-100 text-center mt-2"><Link className="w-100 text-center mt-2" to="../createownercontain"> Become and Owner! </Link></div>
+            }
+                {!this.state.showLoc && this.state.owner && <ul style={{maxHeight: '45vh'}}>
+           
                     {this.state.renderLocations}
                     <Link to={"../addlocation"}>
                         Add A Location

@@ -44,7 +44,7 @@ export default function PreferenceChange() {
     
                 axios.post("https://blueflannel-backend.herokuapp.com/preference/createpreference", prefDTO).then(async (res) => {
                   if (currentUser){
-                    navigate("../dashboard");
+                    navigate("../home");
                   }
                 });
            

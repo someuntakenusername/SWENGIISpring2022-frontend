@@ -37,7 +37,7 @@ export default function AddLocation() {
        console.log(phone.current.value)
        console.log(name.current.value)
        createLocation(cost, name.current.value, address.current.value, phone.current.value, currentUser.id)
-       navigate("../dashboard")
+       navigate("../home")
     }
 
 

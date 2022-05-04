@@ -1,52 +1,63 @@
-import React, { useState } from "react";
-import { MapComponent } from "./components/MapComponent";
+import React from "react";
 import "./App.css";
-import useWindowDimensions from "./FunctionReferences/WindowDimensions";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import YelpComponent from "./components/YelpDemoComponent";
-import GooglePlacesDemo from "./components/GooglePlacesDemoComponent";
 import SignUp from "./components/SignUp";
 import { Container } from "react-bootstrap";
-import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import { AuthProvider } from "./contexts/AuthContext";
 import SignIn from "./components/SignIn";
 import HomeWrapper from "./components/HomeWrapper";
 import ForgotPassword from "./components/ForgotPassword";
 import PreferenceChange from "./components/PreferenceChange";
 import ResultsDemo from "./components/ResultsDemo";
-import Links from "./components/link";
-import UserDashboard from "./components/UserDashboard";
 import LocationDetails from "./components/LocationDetails";
 import LeaveReviewContainer from "./components/LeaveReviewContainer";
 
-import LeaveReview from "./components/LeaveReview";
 import ReadReviewContainer from "./components/ReadReviewContainer";
 import AddLocation from "./components/AddLocation";
-import CreateOwnerContainer from "./components/CreateOwnerContainer";
+import { Navbar } from "react-bootstrap";
+import CreateOwnerWrapper from "./components/CreateOwnerWrapper";
+import { NavDropdown } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
+import BookmarkedResortsDashboard from "./components/BookmarkedResortsDashboard";
+import RecommendedResortsDashboard from "./components/RecommendedResortsDashboard";
+import EditLocsDash from "./components/EditLocationsDashboard";
+import LogOut from "./components/LogOut";
 function App() {
-  
   return (
     <Router>
       <div>
         <nav>
-          <ul>
+          
             {
               <>
-                <AuthProvider>
-                  <Links to="/SignUp" message="Sign Up"></Links>
-                </AuthProvider>
-                <AuthProvider>
-                  <Links to="/" message="Sign In"></Links>
-                </AuthProvider>
-                <AuthProvider>
-                  <Links to="/dashboard" message="User Dashboard"></Links>
-                </AuthProvider>
-                <AuthProvider>
-                  <Links to="/preferenceChange" message="Change Preferences"></Links>
-                </AuthProvider>
-                <AuthProvider>
-                  <Links to="/home" message="Map"></Links>
-                </AuthProvider>
-              
+                <Navbar bg="primary" variant="dark" style = {{marginBottom: 10}} >
+                  <Container>
+                    <Navbar.Brand as={Link} to="/home">Ski Finder</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                      <Nav className="me-auto">
+                        <Nav.Link as={Link} to="/home">View Map</Nav.Link>
+                        <NavDropdown title="Account" id="basic-nav-dropdown">
+                          <NavDropdown.Item as={Link} to="/SignUp">Sign Up</NavDropdown.Item>
+                          <NavDropdown.Item as={Link} to="/">Sign In</NavDropdown.Item>
+                          <NavDropdown.Item as={Link} to="/preferenceChange">Change Preferences</NavDropdown.Item>
+                          <NavDropdown.Item as={Link} to="/logout">Log Out</NavDropdown.Item>
+                          <NavDropdown.Divider />
+                        </NavDropdown>
+                        <NavDropdown title="Dashboard" id="basic-nav-dropdown">
+                          <NavDropdown.Item as={Link} to="/recommendeddashboard">Bookmarks</NavDropdown.Item>
+                          <NavDropdown.Item as={Link} to="/bookmarkdashboard">Recommended</NavDropdown.Item>
+                          <NavDropdown.Divider />
+                        </NavDropdown>
+                        <NavDropdown title="Owner" id="basic-nav-dropdown">
+                          <NavDropdown.Item as={Link} to="../createownercontain">Become an Owner</NavDropdown.Item>
+                          <NavDropdown.Item as={Link} to="/editlocationsdashboard">Manage Locations</NavDropdown.Item>
+                          <NavDropdown.Divider />
+                        </NavDropdown>
+                      </Nav>
+                    </Navbar.Collapse>
+                  </Container>
+                </Navbar>
               </>
 
             }
@@ -55,7 +66,7 @@ function App() {
               //<Link to="/">Sign In</Link>
               // </li>
             }
-          </ul>
+         
         </nav>
         <Routes>
           <Route
@@ -73,29 +84,59 @@ function App() {
               </AuthProvider>
             }
           ></Route>
-    
           <Route
-            path="/dashboard"
+            path="/bookmarkdashboard"
             element={
               <AuthProvider>
                 <Container
-            
-                  style={{ display: 'flex', minHeight: '100vh' }}
+                  className="d-flex align-items-center justify-content-center"
+                  style={{ minHeight: "100vh" }}
                 >
-
-                 <UserDashboard></UserDashboard>
-
+                  <div className="w-100" style={{ maxWidth: "400px" }}>
+                    <RecommendedResortsDashboard></RecommendedResortsDashboard>
+                  </div>
                 </Container>
-
               </AuthProvider>
             }
           ></Route>
           <Route
+            path="/editlocationsdashboard"
+            element={
+              <AuthProvider>
+                <Container
+                  className="d-flex align-items-center justify-content-center"
+                  style={{ minHeight: "100vh" }}
+                >
+                  <div className="w-100" style={{ maxWidth: "400px" }}>
+                    <EditLocsDash></EditLocsDash>
+                  </div>
+                </Container>
+              </AuthProvider>
+            }
+          ></Route>
+          <Route
+            path="/recommendeddashboard"
+            element={
+              <AuthProvider>
+                <Container
+                  className="d-flex align-items-center justify-content-center"
+                  style={{ minHeight: "100vh" }}
+                >
+                  <div className="w-100" style={{ maxWidth: "400px" }}>
+                    <BookmarkedResortsDashboard></BookmarkedResortsDashboard>
+                  </div>
+                </Container>
+              </AuthProvider>
+            }
+          ></Route>
+
+          
+          <Route
             path="/home"
             element={
               <AuthProvider>
-              <HomeWrapper></HomeWrapper>        
-                    </AuthProvider>
+                <HomeWrapper></HomeWrapper>
+              </AuthProvider>
 
             }
           ></Route>
@@ -111,6 +152,22 @@ function App() {
                     <ForgotPassword></ForgotPassword>
                   </div>
                 </Container>
+              </AuthProvider>
+            }
+          ></Route>
+          <Route
+            path="/logout"
+            element={
+              <AuthProvider>
+               <Container
+                  className="d-flex align-items-center justify-content-center"
+                  style={{ minHeight: "100vh" }}
+                >
+                  <div className="w-100" style={{ maxWidth: "400px" }}>
+                    <LogOut></LogOut>
+                  </div>
+                  </Container>
+       
               </AuthProvider>
             }
           ></Route>
@@ -175,39 +232,42 @@ function App() {
             }
           ></Route>
           <Route
-            path="/dashboard/details"
+            path="/recommendeddashboard/details"
             element={
               <AuthProvider>
-                
-                  <div className="w-100" style={{ width: "100vh" }}>
-                    <LocationDetails></LocationDetails>
-                  </div>
-            
+
+                <div className="w-100" style={{ width: "100vh" }}>
+                  <LocationDetails></LocationDetails>
+                </div>
+
               </AuthProvider>
             }
           ></Route>
-         
+
           <Route
             path="/leaveReview"
             element={
               <AuthProvider>
-                
-                  <div className="w-100" style={{ width: "100vh" }}>
-                    <LeaveReviewContainer></LeaveReviewContainer>
-                  </div>
-            
+
+                <div className="w-100" style={{ width: "100vh" }}>
+                  <LeaveReviewContainer></LeaveReviewContainer>
+                </div>
+
               </AuthProvider>
             }
           ></Route>
           <Route
-            path="/createOwner"
+            path="/createownercontain"
             element={
               <AuthProvider>
-                
-                  <div className="w-100" style={{ width: "100vh" }}>
-                    <CreateOwnerContainer></CreateOwnerContainer>
-                  </div>
-            
+<Container
+                  className="d-flex align-items-center justify-content-center"
+                  style={{ minHeight: "100vh" }}
+                >
+                <div  style={{  }}>
+                  <CreateOwnerWrapper></CreateOwnerWrapper>
+                </div>
+                </Container>
               </AuthProvider>
             }
           ></Route>
@@ -215,11 +275,11 @@ function App() {
             path="/readReview"
             element={
               <AuthProvider>
-                
-                  <div className="w-100" style={{ width: "100vh" }}>
-                    <ReadReviewContainer></ReadReviewContainer>
-                  </div>
-            
+
+                <div className="w-100" style={{ width: "100vh" }}>
+                  <ReadReviewContainer></ReadReviewContainer>
+                </div>
+
               </AuthProvider>
             }
           ></Route>

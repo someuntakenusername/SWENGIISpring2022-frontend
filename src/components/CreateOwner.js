@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { createOwner, getOwnerById } from '../services/ownerService';
 
 export default class CreateOwner extends Component {
@@ -40,7 +41,7 @@ export default class CreateOwner extends Component {
     render() {
         return (
             <>
-            {!this.state.hasSet &&
+            {!this.state.hasSet && this.props.currentUser &&
             <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center', alignItems: 'center', justifyContent: 'center' }}>
                
                 <h1>
@@ -61,14 +62,15 @@ export default class CreateOwner extends Component {
             </div>
         }
         {
-            this.state.hasSet &&  <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center', alignItems: 'center', justifyContent: 'center' }}>
+            this.state.hasSet && this.props.currentUser && <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center', alignItems: 'center', justifyContent: 'center' }}>
                
             <h1>
                 <u>
                     You are already an owner.
                 </u>
             </h1>
-            
+            {!this.props.currentUser && <div className="w-100 text-center mt-2"><Link className="w-100 text-center mt-2" to="/"> Please Login/Sign-Up To Access </Link></div>
+            }
 
         </div>
         }

@@ -2,12 +2,9 @@ import React, { Component } from 'react'
 import { getPreference, getPreferenceID } from '../services/PreferenceService'
 import Geocode from "react-geocode";
 import { MapComponent } from './MapComponent'
-import { Link } from 'react-router-dom';
-import useWindowDimensions from '../FunctionReferences/WindowDimensions'
-import { GoogleMap, withGoogleMap, withScriptjs, Marker, InfoWindow } from "react-google-maps"
+import Marker from 'react-google-maps/lib/components/Marker';
 import { MDBCol } from 'mdbreact';
 import { Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
 import LocationDetails from './LocationDetails';
 import { searchLocation } from '../services/YelpService';
 
@@ -58,7 +55,6 @@ export default class MapWrapper extends Component {
 
                 var renderArray = [];
                 for (let index = 0; index < this.state.locations.length; index++) {
-                    const element = this.state.locations[index];
                     renderArray = [...renderArray,
 
                     <Marker
@@ -100,22 +96,21 @@ export default class MapWrapper extends Component {
             console.log(this.state.searchLocations)
             console.log("here2")
 
-            var renderArray = [];
             this.setState({
                 searchMarkers: []
             })
                 for (let index = 0; index < this.state.searchLocations.length; index++) {
-                    const element = this.state.searchLocations[index];
                     this.setState({
                         searchMarkers: [...this.state.markers, <Marker
                             position={{ lat: this.state.searchLocations[index].latitude, lng: this.state.searchLocations[index].longitude }}
                             clickable={true}
                             onClick={() => {
-                                console.log("pressed");
+                                
                                 this.setState({
                                     showMarker: true,
                                     marketID: this.state.searchLocations[index].id
                                 })
+                                console.log(this.state);
                             }}
                             icon= {{url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"}}
                               
