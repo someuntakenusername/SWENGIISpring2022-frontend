@@ -89,8 +89,9 @@ export default class LocationInformation extends Component {
     {this.state.currentUser && 
         <Link to={"/leaveReview"} state = {{id: this.state.locationID}}>Leave A Review</Link>
       }
+       {this.state.currentUser && 
         <Link to="/readReview" state = {{id: this.state.locationID}}>Read Reviews</Link>
-   
+      }
        { this.state.imageSrc !== "" && <img alt='' src={this.state.imageSrc} style={{width: '30vh', height: '30vh'}}/>}
        {this.state.cost && <h3>{"Cost: " + this.state.cost + "/4"}</h3>}
        {this.state.rating && <h3>{"Rating: " + this.state.rating + "/5"}</h3>}
